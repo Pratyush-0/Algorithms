@@ -12,7 +12,7 @@ struct Job{
 void arrange(Job arr[],int n){
     //bulbul sort
     for(int i=0;i<n-1;i++){
-        for(int j=0;j<n-1;j++){
+        for(int j=0;j<n-1-i;j++){
             if(arr[i].prof<arr[i+1].prof){
                 //swap
                 Job temp=arr[i];
