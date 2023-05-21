@@ -32,12 +32,12 @@ void knapSack(cell arr[],int n,int cap,double sakitem[]){
         sakitem[i]=0.0;
     }
     for(int i=0;i<n;i++){
-        if(arr[i].wt<=cap){
+        if(arr[i].wt<=cap){   //weight is less than the capacity
             sakitem[i]=1.0;
             cap-=arr[i].wt;
         }
-        else if (arr[i].wt>cap){
-            sakitem[i]=(double)cap/(double)arr[i].wt;
+        else if (arr[i].wt>cap){   //total  weight greater than the left capacity
+            sakitem[i]=(double)cap/(double)arr[i].wt;   //fraction taken=capacity left / weight of the item
             return;
         }
     }
@@ -70,10 +70,11 @@ int main(void){
     double sackitem[n];//output array
 
     knapSack(items,n,cap,sackitem); //calling knapsack
-
+    
+    //calculating total profit
     double profit=0.0;
     for(int i=0;i<n;i++){
-        profit+=items[i].val*sackitem[i];
+        profit+=items[i].val*sackitem[i]; //multiplying given value of the item with the fraction taken in the sack
     }
     cout<<"total profit= "<<profit;
     
