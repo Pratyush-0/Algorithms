@@ -13,11 +13,11 @@ void arrange(Job arr[],int n){
     //bulbul sort
     for(int i=0;i<n-1;i++){
         for(int j=0;j<n-1-i;j++){
-            if(arr[i].prof<arr[i+1].prof){
+            if(arr[j].prof<arr[j+1].prof){
                 //swap
-                Job temp=arr[i];
-                arr[i]=arr[i+1];
-                arr[i+1]=temp;
+                Job temp=arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;
             }
         }
     }
