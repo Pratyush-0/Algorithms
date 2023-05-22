@@ -1,15 +1,16 @@
 #include <iostream>
 using namespace std;
-int n = 5;
-int grp[5][5] = {
-    {0, 3, 0, 0, 2},
-    {3, 0, 5, 4, 1},
-    {0, 5, 0, 2, 0},
-    {0, 4, 2, 0, 3},
-    {2, 1, 0, 3, 0}};
-int dist[5];
-int parent[5];
-int mst[5];
+int n = 6;
+int grp[6][6] = {
+    {0, 7, 0, 8, 0, 0},
+    {7, 0, 6, 3, 0, 0},
+    {0, 6, 0, 4, 2, 5},
+    {8, 3, 4, 0, 3, 0},
+    {0, 0, 2, 3, 0, 2},
+    {0, 0, 5, 0, 2, 0}};
+int dist[100];
+int parent[100];
+int mst[100];
 
 // min distance vertex
 int minDist()
@@ -37,19 +38,19 @@ void primsMST(int src)
         mst[i] = 0;
     }
     dist[src] = 0;
-    // mst[src]=1;
+    parent[src] = src;
     for (int i = 0; i < n; i++)
     {
-        int key = minDist();
-        mst[key] = 1;
+        int cur_vet = minDist();
+        mst[cur_vet] = 1;
         for (int v = 0; v < n; v++)
         {
-            if (grp[key][v] != 0)
+            if (grp[cur_vet][v])
             {
-                if (mst[v] == 0 && dist[v] > grp[key][v])
+                if (mst[v] == 0 && dist[v] > grp[cur_vet][v])
                 {
-                    dist[v] = grp[key][v];
-                    parent[v] = key;
+                    dist[v] = grp[cur_vet][v];
+                    parent[v] = cur_vet;
                 }
             }
         }
@@ -61,10 +62,7 @@ void showTree()
 {
     for (int i = 0; i < n; i++)
     {
-        if (parent[i] != -1)
-        {
-            cout << parent[i] << "->" << i << "  " << grp[parent[i]][i] << endl;
-        }
+        cout << "EDGE   " << char('A' + parent[i]) << "---" << char('A' + i) << "->" << dist[i] << endl;
     }
 }
 
